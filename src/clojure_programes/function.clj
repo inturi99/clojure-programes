@@ -33,8 +33,31 @@
       (* number (power number (- exponent 1)))))
 
 ;; adds all the numbers below a given limit
-(defn add-up ([limit] (add-up limit 0 0))
+(defn add-up ([limit]
+  (add-up limit 0 0))
   ([limit current sum]
    (if (< limit current)
     sum
     (recur limit (+ 1 current )(+ current sum)))))
+
+(defn printvalue[x y]
+  (if (> x y) 
+    (prn "max value of x = " x)
+    (if (< x y ) (prn "max value of y = "  y)))
+  (if(= x y)
+    (prn "x = y " x "=" y)
+    (prn "x != y " x "!=" y)))
+
+(defn leapyear [x]
+  (if (and (or (zero? (mod x 4)) (zero? (mod x 400))) (not= 0 (mod x 100)))
+  (prn x "is a Leap Year")
+  (prn x "is not a Leap Year")))
+
+(defn leapyearc [x]
+  (cond (zero? (mod x 400)) true
+        (zero? (mod x 100)) false 
+        :else (zero? (mod x 4))))
+
+
+
+(def my-matcher (re-matcher #"[a-zA-z]*" "test"))
