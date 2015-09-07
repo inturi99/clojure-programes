@@ -65,3 +65,8 @@
 (defn dup-seq[s]
   (reduce concat(map #(take 2 (repeat %)) s)))
 
+
+;;Implement range
+(defn range1[a b]
+  (take(- b a)(iterate inc a)))
+
