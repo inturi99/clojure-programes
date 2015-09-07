@@ -58,6 +58,29 @@
         (zero? (mod x 100)) false 
         :else (zero? (mod x 4))))
 
-
-
 (def my-matcher (re-matcher #"[a-zA-z]*" "test"))
+
+(defn printstrin[x]
+   (if (> x 10)
+    (do
+      (prn "Success ") x)
+    (do
+       (prn "Failure") x))
+   )
+
+(defn printmul[x]
+  (if (> x 10)
+    (do
+      (prn "Success " x) x)
+    (do
+      (prn "Failure " x) x))
+  )
+
+(defn gcd [x y]
+  (cond
+    (zero? x) y
+    (zero? y) x
+    :else (recur y (mod x y))))
+
+(defn lcm [x y]
+  (/ (* x y) (gcd x y)))
