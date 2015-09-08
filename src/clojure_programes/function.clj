@@ -84,3 +84,9 @@
 
 (defn lcm [x y]
   (/ (* x y) (gcd x y)))
+
+;;(reduce lcm '(10 20 30))
+
+(defn groupby[f col]
+  (reduce #(assoc %1 (f %2)
+                  (conj (apply vector (%1 (f %2))) %2)) {} col))
