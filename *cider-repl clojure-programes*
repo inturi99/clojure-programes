@@ -1,0 +1,28 @@
+; CIDER 0.10.0snapshot (package: 20150906.1311) (Java 1.8.0_51, Clojure 1.6.0, nREPL 0.2.10)
+clojure-programes.core> (fact 1)
+1
+clojure-programes.core> (fact1 1)
+1
+clojure-programes.core> (doc map)
+-------------------------
+clojure.core/map
+([f coll] [f c1 c2] [f c1 c2 c3] [f c1 c2 c3 & colls])
+  Returns a lazy sequence consisting of the result of applying f to the
+  set of first items of each coll, followed by applying f to the set
+  of second items in each coll, until any one of the colls is
+  exhausted.  Any remaining items in other colls are ignored. Function
+  f should accept number-of-colls arguments.
+nil
+clojure-programes.core> (seq [1 2 3])
+(1 2 3)
+clojure-programes.core> (seq [1  4 2 3])
+(1 4 2 3)
+clojure-programes.core> (class [1 2 3])
+clojure.lang.PersistentVector
+clojure-programes.core> (class(seq [1 2 3]))
+clojure.lang.PersistentVector$ChunkedSeq
+clojure-programes.core> (seq [])
+nil
+clojure-programes.core> (every? odd?[1 2 3 34])
+false
+clojure-programes.core> (com-seq

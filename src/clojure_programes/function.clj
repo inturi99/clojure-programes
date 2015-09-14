@@ -76,6 +76,11 @@
       (prn "Failure " x) x))
   )
 
+(defn sum-even-numbers [nums]
+  (if-let [nums (seq (filter even? nums))]
+    (reduce + nums)
+    "No even numbers found."))
+
 (defn gcd [x y]
   (cond
     (zero? x) y
@@ -90,3 +95,6 @@
 (defn groupby[f col]
   (reduce #(assoc %1 (f %2)
                   (conj (apply vector (%1 (f %2))) %2)) {} col))
+
+(defn unique[]
+  )

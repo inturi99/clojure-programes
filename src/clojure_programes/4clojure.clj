@@ -1,5 +1,8 @@
 (ns clojure-programes.core
-  (:gen-class))
+  (:gen-class)
+  (:use [clojure.string :only
+         [lower-case split blank? split-lines]])
+  (:use [clojure.java.io :only [file]]))
 ;; the second to last element from a sequence
 (defn sen-last [x]
   (nth x (- (count x) 2)))
@@ -69,4 +72,52 @@
 ;;Implement range
 (defn range1[a b]
   (take(- b a)(iterate inc a)))
+
+;;Flatten a Sequence
+(defn flats [n]
+  (let [[x & xs] n]
+    (cond
+      (empty? n) '()
+      (coll? x) (concat (flats x) (flats xs))
+      :else (cons x (flats xs)))))
+
+;;Interleave Two Seqs
+(defn inter-seq[a b]
+  (letfn [(iter [a b]
+             (let [[x & xs] a
+                   [y & ys] b]
+               (cons x (cons y (lazy-seq (iter xs ys))))))]
+(take (* 2 (min (count a) (count b))) (iter a b))))
+
+;;Factorial Fun
+(defn fact [n]
+  (loop [current n
+         next (dec current)
+         total 1]
+    (if (> current 1)
+      (recur next (dec next) (* total current))
+      total)))
+
+(defn fact1[n]
+  (reduce * (range 1(inc n))))
+
+;;Compress a Sequence
+(defn com-seq[n]
+  (map first (partition-by identity n)))
+
+;;Replicate a Sequence
+(defn replicates [lat n]
+  (reduce concat(map #(take n (repeat %)) lat)))
+
+;;Interpose a Seq
+(defn interpose-seq [a [x & y]]
+  (lazy-seq
+   (when x
+     (if y
+       (cons x (cons a (my-interpose a y)))
+       (cons x nil)))))
+
+;;Pack a Sequence
+(defn pack-seq[n]
+  (partition-by identity n))
 
